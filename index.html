@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
@@ -80,5 +80,29 @@
       pontos = 0;
       placar.textContent = "Pontuação: 0";
       quadrado.style.display = "block";
-      moverQuadrado(
+      moverQuadrado();
+      clearInterval(intervalo);
+      intervalo = setInterval(moverQuadrado, 1000);
+    }
+
+    function moverQuadrado() {
+      let largura = jogo.clientWidth - 50;
+      let altura = jogo.clientHeight - 50;
+
+      let posX = Math.floor(Math.random() * largura);
+      let posY = Math.floor(Math.random() * altura);
+
+      quadrado.style.left = posX + "px";
+      quadrado.style.top = posY + "px";
+    }
+
+    quadrado.addEventListener("click", function () {
+      pontos++;
+      placar.textContent = "Pontuação: " + pontos;
+      moverQuadrado();
+    });
+  </script>
+</body>
+</html>
+
 
