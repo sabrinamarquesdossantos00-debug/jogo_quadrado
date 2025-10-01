@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jogo: Clique no Quadrado</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #222;
-      color: white;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      overflow: hidden;
-    }
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Clique no Quadrado</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #222;
+        color: white;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
 
-    h1 {
-      margin: 20px;
-      color: #00ff88;
-    }
+      h1 {
+        margin: 20px;
+        color: #00ff88;
+      }
 
-    #jogo {
-      position: relative;
-      width: 100%;
-      height: 80vh;
-      border: 2px solid #00ff88;
-      margin: auto;
-      overflow: hidden;
-      background: #333;
-    }
+      #jogo {
+        position: relative;
+        width: 100%;
+        height: 80vh;
+        border: 2px solid #00ff88;
+        margin: auto;
+        overflow: hidder;
+        background: #333;
+      }
 
-    #quadrado {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background: #ff4444;
-      border-radius: 8px;
-      cursor: pointer;
-      display: none; /* esconde até iniciar */
-    }
+      #quadrado {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: #ff4444;
+        border-radius: 8px;
+        cursor: pointer;
+        display: none;
+      }
 
-    #placar {
-      margin: 20px;
-      font-size: 20px;
-    }
+      #placar {
+        margin: 20px;
+        font-size: 20px;
+      }
 
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      background: #00ff88;
-      cursor: pointer;
-    }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background: #00ff88;
+        cursor: pointer;
+      }
 
-    button:hover {
-      background: #00cc66;
-    }
-  </style>
-</head>
+      button:hover {
+        background: #00cc66;
+      }
+      </style>
+  </head>
 <body>
   <h1>🎯 Clique no Quadrado</h1>
   <p id="placar">Pontuação: 0</p>
@@ -70,45 +70,37 @@
   </div>
 
   <script>
-    // Aguarda o carregamento completo do DOM
-    window.onload = function () {
-      let pontos = 0;
-      const quadrado = document.getElementById("quadrado");
-      const placar = document.getElementById("placar");
-      const jogo = document.getElementById("jogo");
-      let intervalo;
+    let pontos = 0;
+    let quadrado = document.getElementById("quadrado");
+    let placar = document.getElementById("placar");
+    let jogo = document.getElementById("jogo");
+    let intervalo;
 
-      function iniciarJogo() {
-        console.log("Jogo iniciado"); // para depuração
-        pontos = 0;
-        placar.textContent = "Pontuação: 0";
-        quadrado.style.display = "block";
-        moverQuadrado();
+    function iniciarJogo() {
+      pontos = 0;
+      placar.textContent = "Pontuação: 0";
+      moverQuadrado();
+      quadrado.style.display = "block";
 
-        clearInterval(intervalo);
-        intervalo = setInterval(moverQuadrado, 1000);
-      }
+      intervalo = setInterval(moverQuadrado, 1000); // muda de posição a cada 1s
+    }
 
-      function moverQuadrado() {
-        const largura = jogo.clientWidth - 50;
-        const altura = jogo.clientHeight - 50;
+    function moverQuadrado() {
+      let largura = jogo.clientWidth - 50;
+      let altura = jogo.clientHeight - 50;
 
-        const posX = Math.floor(Math.random() * largura);
-        const posY = Math.floor(Math.random() * altura);
+      let posX = Math.floor(Math.random() * largura);
+      let posY = Math.floor(Math.random() * altura);
 
-        quadrado.style.left = posX + "px";
-        quadrado.style.top = posY + "px";
-      }
+      quadrado.style.left = posX + "px";
+      quadrado.style.top = posY + "px";
+    }
 
-      quadrado.addEventListener("click", function () {
-        pontos++;
-        placar.textContent = "Pontuação: " + pontos;
-        moverQuadrado();
-      });
-
-      // Deixa a função visível para o botão onclick
-      window.iniciarJogo = iniciarJogo;
-    };
+    quadrado.addEventListener("click", function() {
+      pontos++;
+      placar.textContent = "Pontuação: " + pontos;
+      moverQuadrado();
+    });
   </script>
 </body>
 </html>
